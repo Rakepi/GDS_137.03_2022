@@ -1,28 +1,27 @@
 var canvas;
 var context;
 var timer;
-
-var interval = 1000/60;
 var player;
+var interval = 1000/60;
 
+//canvas/context
 canvas = document.getElementById("canvas");
-context = canvas.getContext("2d");
+context = canvas.getContext("2d")
 
+//new player and timer intervals
 player = new Player();
-player.color = "blue";
-player.height = 100;
-player.width = 100;
-player.x = 100;
-player.y = 100;
+player.vx = 4;
+timer = setInterval(animate, interval)
 
-timer = setInterval(animate, interval);
-
-
+//function for animating
 function animate(){
-context.clearRect(0,0,canvas.width, canvas.height);
+    // clear canvas and then move player
 
-player.x += 0;
+    //clear canvas here
+    context.clearRect(0,0,canvas.width, canvas.height);	
+    // move player here...
+    player.move();
 
-player.draw();
-
+	//draw on/update the canvas here
+	player.draw();
 }
