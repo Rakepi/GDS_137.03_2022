@@ -28,7 +28,7 @@ Ball.y = canvas.height/2;
 Ball.height = 30;
 Ball.width = 30;
 Ball.color = "coral";
-Ball.vx = -3;
+Ball.vx = -4;
 Ball.vy = 0;
 //-------------------------------------
 
