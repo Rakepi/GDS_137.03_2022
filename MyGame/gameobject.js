@@ -27,6 +27,11 @@ else
     this.color = color;
 
     //player movement -------->>>>
+this.force = 1;
+
+this.ax = 1;
+this.ay = 1;
+
 this.vx = 0;
 this.vy = 0;
 
@@ -41,7 +46,7 @@ this.drawRect = function(){
 }
 
 
-//Ball Class Object ------------------------------------------------------>>>>>
+//Class Object ------------------------------------------------------>>>>>
 
     //drawing ball to screen ---->>> 
     this.drawCircle = function(){

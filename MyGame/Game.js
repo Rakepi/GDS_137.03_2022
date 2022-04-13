@@ -4,10 +4,20 @@ var timer;
 var player1;
 var food;
 var interval = 1000/60;
+var hunger = 100;
+var hTime = 300;
 
 //canvas/context
 canvas = document.getElementById("canvas");
 context = canvas.getContext("2d");
+
+//Hunger bar --------------------------
+hBar = new GameObject();
+hBar.x = 120;
+hBar.y = 30;
+hBar.height = 20;
+hBar.width = 200;
+hBar.color = "Red";
 
 //Player 1 ----------------------------
 player1 = new GameObject();
@@ -60,13 +70,28 @@ function animate(){
 	    player1.x = canvas.width - 60;
     }
     //----------------------------------->>>
+    
+    //Food/Starvation-----------------------
+    hTime --;
+    if( hTime = 0){
+        hTime = 300;
+        hBar = -20;
+        hunger = -10;
+    }
+    if(hBar > 200){
 
+        hBar = 200;
+        hunger = 100;
 
-    //food collision
-   
-    if(player1.hitTestObject(food)){
-        
-      food.x += 10; 
+    }
+
+    
+    //food collision -----------------------
+    if(player1 == food.x){
+    
+        hBar += 20;
+        hunger += 10;
+      
    }
     //Loops ball back to Screen center ->>>>
     if(food.x < 0){
@@ -82,5 +107,6 @@ function animate(){
     //----------------------------------->>>>
 
     player1.drawRect();
+    hBar.drawRect();
     food.drawCircle();
 }
