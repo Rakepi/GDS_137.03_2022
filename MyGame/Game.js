@@ -1,11 +1,12 @@
 var canvas;
 var context;
 var timer;
+var interval = 1000/60;
+var hTime = 300;
+
 var player1;
 var food;
-var interval = 1000/60;
 var hunger = 100;
-var hTime = 300;
 
 //canvas/context
 canvas = document.getElementById("canvas");
@@ -42,7 +43,6 @@ food.vy = 0;
 //-------------------------------------
 
 timer = setInterval(animate, interval);
-
 //function for animation
 function animate(){
 
