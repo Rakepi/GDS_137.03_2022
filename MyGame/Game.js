@@ -87,13 +87,14 @@ function animate(){
 
     
     //food collision -----------------------
+
     if(player1 == food.x){
     
         hBar += 20;
         hunger += 10;
       
    }
-    //Loops ball back to Screen center ->>>>
+    //Loops food back to Screen center ->>>>
     if(food.x < 0){
 
         food.x = canvas.width/2 + 15;
