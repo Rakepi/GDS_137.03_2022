@@ -28,23 +28,23 @@ function GameObject(x,y,w,h,color){
 		this.color = color;
 	
 	    //player movement -------->>>>
-	this.vx = 0;
-	this.vy = 0;
+		this.vx = 0;
+		this.vy = 0;
 	
-	//Updates screen and draws player ---------->>>>
-	this.drawRect = function(){
-		context.save();
-		context.fillStyle = this.color;
-		context.translate(this.x, this.y);
-		context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
-		context.restore();
-		
-	}
-	//Ball Class Object ------------------------------------------------------>>>>>
+		//Updates screen and draws player ---------->>>>
+		this.drawRect = function()
+		{
+			context.save();
+			context.fillStyle = this.color;
+			context.translate(this.x, this.y);
+			context.fillRect((-this.width/2), (-this.height/2), this.width, this.height);
+			context.restore();
+		}
+		//Ball Class Object ------------------------------------------------------>>>>>
 
 		//drawing ball to screen ---->>> 
-		this.drawCircle = function(){
-
+		this.drawCircle = function()
+		{
 		 	context.save();
 			context.fillStyle = this.color;
 		 	context.translate(this.x, this.y)
@@ -53,9 +53,27 @@ function GameObject(x,y,w,h,color){
 		 	context.closePath();
 			context.fill();
 		 	context.restore();
-			
 		 }
 		//-------------------------------------------------------------------->>>>>
+		this.drawLine = function()
+		{
+			context.save();
+		    context.fillStyle = this.color;
+			context.translate(this.x, this.y)
+			context.beginPath();
+			context.moveTo();
+			context.lineTo();
+			context.closePath();
+		    context.fill();
+			context.restore();
+		}
+	this.drawLine = function()
+	{
+
+		context.save();
+		context
+
+	}
 
 	// Movement System ----------->>>>>>>
 	this.move = function(){
