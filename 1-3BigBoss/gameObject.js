@@ -67,16 +67,10 @@ function GameObject(x,y,w,h,color){
 		    context.fill();
 			context.restore();
 		}
-	this.drawLine = function()
-	{
-
-		context.save();
-		context
-
-	}
 
 	// Movement System ----------->>>>>>>
-	this.move = function(){
+	this.move = function()
+	{
 
 		this.x += this.vx;
 		this.y += this.vy;

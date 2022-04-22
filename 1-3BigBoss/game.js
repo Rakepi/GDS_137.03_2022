@@ -12,6 +12,7 @@ var vx = force;    // ask jay about
 var vy = force;    // ask jay about 
 var friction = .2; // ask jay about
 var gravity = 5;
+var score = 0;
 // Canvas...
 canvas = document.getElementById("canvas");
 context = canvas.getContext("2d")
@@ -70,8 +71,6 @@ function animate()
         vx += ax * force;
         player.x += vx;
     }
-     //----------------------------------->>>>
- 
      //Collision for Player -------------->>>>
     if(player.x < 125)
     {
@@ -92,14 +91,23 @@ function animate()
     {
          ball.vy += gravity;
     }
+    if(ball.x + 20 > canvas.width)
+    {
+        ball.vx -= ball.vx;
+    }
+    if(ball.x - 20 < 0)
+    {
+        ball.vx += ball.vx;
+    }
 
    
 
 
-
-
-
-
+    // score card for # of bounces on paddle...
+    context.font = "20px Georgia";
+    context.fillText("Score:", 20, 30)
+    context.fillText(score,85, 30);
+    
     
     ball.move();
     //Draw here...
