@@ -1,5 +1,7 @@
+// JavaScript Document
 function GameObject(x,y,w,h,color)
 {
+	
 	//Default Values
 	if(x == undefined)
 		this.x = canvas.width/2;
@@ -19,13 +21,13 @@ function GameObject(x,y,w,h,color)
 	else 
 		this.height = h;
 	
-		//player's color's...
+		//player's color
 	if(color == undefined)
 		this.color = "#ff0000";
 	else 
 		this.color = color;
 	
-	//player's velocity...
+	//player's velocity or speed on each axis
 	
 	this.force = 1;
 	
@@ -37,7 +39,7 @@ function GameObject(x,y,w,h,color)
 	
 
 	
-	//Draws shapes to canvas...
+	//This draws the player to the screen
 	this.drawRect = function()
 	{
 		context.save();
@@ -61,7 +63,7 @@ function GameObject(x,y,w,h,color)
 		
 	}	
 	
-	//Move function allows player to move around...
+	//This changes the player's position
 	this.move = function()
 	{
 		this.x += this.vx;
