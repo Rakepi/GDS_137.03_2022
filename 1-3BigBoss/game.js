@@ -27,16 +27,17 @@ ball.x = canvas.width/2;
 ball.y = canvas.height/2;
 ball.height = 80;
 ball.width = 80;
-ball.color = "Turquoise";
+ball.color = "magenta";
 ball.vx = 5;
 ball.vy = 0;
+ball.force = 5;
 //Player vvv...
 player = new GameObject();
 player.x = canvas.width/2;
 player.y = 550;
 player.height = 40;
 player.width = 250;
-player.color = "gold";
+player.color = "cyan";
 player.vx = 0;
 player.vy = 0;
 
@@ -124,18 +125,25 @@ function animate()
      score++;
      ball.vy = -ball.vy - 10;
      ball.y = player.y - player.height/2 - ball.height/2;
+     if(ball.x < player.x - player.width/6){
+          ball.vx = -ball.force;
+     }
      if(ball.x < player.x - player.width/3)
      {
-          ball.vx -= 5;
+          ball.vx = -ball.force * 5;
+     }
+     if(ball.x > player.x + player.width/6){
+          ball.vx = ball.force;
      }
      if(ball.x > player.x + player.width/3){
-          ball.vx += 5;
+          ball.vx = ball.force *5;
      }
  }
     // score card for # of bounces on paddle...
-    context.font = "20px Georgia";
+    context.font = "bold 16px Arial";
+    context.fillStyle = "grey";
     context.fillText("Score:", 20, 30)
-    context.fillText(score,85, 30);
+    context.fillText(score,75, 30);
 
     //draws line....
     context.save();
