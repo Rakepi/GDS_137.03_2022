@@ -80,10 +80,12 @@ function animate()
      //Collision for Player -------------->>>>
     if(player.x < 125)
     {
+         player.vx = 0;
          player.x = 125;
     }
      if(player.x + 125 > canvas.width)
     {
+         player.vx = 0;
          player.x = canvas.width - 125;
     }
      //----------------------------------->>>>
