@@ -112,14 +112,14 @@ function animate()
 				You simply need to change the values of the x and y properties of the object literals listed below to find the solution.
 	*/
 
-	while(platform0.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0)
+	while(platform0.hitTestPoint({x:player.left().x, y:player.bottom().y}) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
 		player.canJump = true;
 	}
 	
-	while(platform1.hitTestPoint({x:player.x, y:player.y}) && player.vy >=0)
+	while(platform1.hitTestPoint({x:player.right().x, y:player.bottom().y}) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
@@ -138,5 +138,6 @@ function animate()
 	player.drawRect();
 	
 	goal.drawCircle();
+	player.drawDebug()
 }
 
