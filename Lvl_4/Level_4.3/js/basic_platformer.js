@@ -92,7 +92,7 @@ function animate()
 		player.y++;
 		player.vy = 0;
 	} */
-	//redo the same for platform 0 and the hit test bottom here...
+	//redo the same for platform 1 and the hit test bottom here...
 	if(platform1.hitTestPoint(player.bottom()) && player.vy >= 0)
 	{
 		player.y--;
