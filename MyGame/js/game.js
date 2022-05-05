@@ -1,8 +1,10 @@
+
+// Designer/Dev - Nathan Price (...STARVATION MAZE GAME JS FILE...)
 var canvas;
 var context;
 var timer;
 var interval = 1000/60;
-
+// -----------------------------------
 var hTimer = 3000/30;
 var player1;
 var food;
@@ -63,15 +65,14 @@ death.y = canvas.height/2;
 death.width = canvas.width;
 death.height = canvas.height;
 death.color = "red";
-
-
-timer = setInterval(animate, interval);
-//MAIN function -----------------------
+//--------------------------------------
+    timer = setInterval(animate, interval);
+//MAIN function ------------------------
 function animate(){
     //clear canvas here
     context.clearRect(0,0,canvas.width, canvas.height);	
     
-    // Player 1 Move -------------------->>>>
+    // Player Movement -------------------->>>>
     if(d)
     {
         player1.x += 3;
@@ -99,36 +100,32 @@ function animate(){
     //----------------------------------->>>>
     //Wall Collision for PLAYER ------------------>>>>
     if(player1.x < 0 + 60){
-
 	    player1.x = 60;
     }
     if(player1.y < 0 + 60){
-
         player1.y = 60;
     }
     if(player1.x + 60 > canvas.width){
-
 	    player1.x = canvas.width - 60;
     }
     if(player1.y + 60 > canvas.height){
-
         player1.y = canvas.height - 60;
     }
     //--------------------------------------
-    if(player.x < 0 + 60){
-
+    if(player.x < 0 + 60)
+    {
 	    player.x = 60;
     }
-    if(player.y < 0 + 60){
-
+    if(player.y < 0 + 60)
+    {
         player.y = 60;
     }
-    if(player.x + 60 > canvas.width){
-
+    if(player.x + 60 > canvas.width)
+    {
 	    player.x = canvas.width - 60;
     }
-    if(player.y + 60 > canvas.height){
-
+    if(player.y + 60 > canvas.height)
+    {
         player.y = canvas.height - 60;
     }
     //----------------------------------->>>
@@ -140,11 +137,11 @@ function animate(){
         hBar.width -= 20;
         console.log('count down');
     }
+    
     if(hunger < 0)hunger = 0;
     if(hBar.width < 0)hBar.width = 0;
 
     //food collision -----------------------
-    
     if(player1.hitTestObject(food)){
 
         hBar.width += 20;
@@ -164,7 +161,6 @@ function animate(){
         food.y = canvas.height/2;
         food1.x = food.x - 8;
         food1.y = food.y - 10;
-        
     }
     if(food.x > canvas.width){
         food.x = 15;
@@ -180,6 +176,7 @@ function animate(){
     food.drawCircle();
     food1.drawCircle();
 
+    //drawing of the starvation death screen here...
     if(hBar.width <= 0)
     {
         death.drawRect();
