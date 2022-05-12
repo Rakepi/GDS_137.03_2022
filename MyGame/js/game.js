@@ -37,13 +37,13 @@ player1.width = 100;
 player1.color = "Purple";
 player1.vx = 0;
 player1.vy = 0;
-// ------------------------------------
+//--------------------------
 player = new GameObject();
 player.x = player1.x;
 player.y = player1.y;
-player.width = 75;
-player.height = 75;
-player.color = "violet";
+player.height = 300;
+player.width = 300;
+follower = new GameObject();
 //Food --------------------------------
 food = new GameObject();
 food.x = canvas.width/2 + 20;
@@ -51,13 +51,6 @@ food.y = canvas.height/2;
 food.height = 30;
 food.width = 30;
 food.color = "coral";
-// -------------------------------------
-food1 = new GameObject();
-food1.x = food.x - 8;
-food1.y = food.y - 10;
-food1.width = 10;
-food1.height = 10;
-food1.color = "green";
 // Death Screen ------------------------
 death = new GameObject();
 death.x = canvas.width/2;
@@ -65,7 +58,17 @@ death.y = canvas.height/2;
 death.width = canvas.width;
 death.height = canvas.height;
 death.color = "red";
+//Enemies-------------------------------
+enemy = new GameObject();
+enemy.x = canvas.width - 200;
+enemy.y = canvas.height/2;
+enemy.width = 60;
+enemy.height = 60;
+enemy.color = "red";
+follower = enemy;
+
 //--------------------------------------
+
     timer = setInterval(animate, interval);
 //MAIN function ------------------------
 function animate(){
@@ -73,31 +76,27 @@ function animate(){
     context.clearRect(0,0,canvas.width, canvas.height);	
     
     // Player Movement -------------------->>>>
-    if(d)
-    {
+    if(d){
         player1.x += 3;
         //console.log("moving left") ---
-        player.x += 3;  
+        player.x = player1.x;
     }
-    if(a)
-    {
+    if(a){
         player1.x += -3;
         //console.log("moving left") ---
-        player.x += -3;  
+        player.x = player1.x;
     }
-    if(w)
-    {
+    if(w){
         player1.y += -3;
-        //console.log("moving left") ---
-        player.y += -3;  
+        //console.log("moving left") --- 
+        player.y = player1.y;
     }
-    if(s)
-    {
+    if(s){
         player1.y += 3;
         //console.log("moving left") ---
-        player.y += 3;  
+        player.y = player1.y;  
     }
-    //----------------------------------->>>>
+
     //Wall Collision for PLAYER ------------------>>>>
     if(player1.x < 0 + 60){
 	    player1.x = 60;
@@ -111,70 +110,61 @@ function animate(){
     if(player1.y + 60 > canvas.height){
         player1.y = canvas.height - 60;
     }
-    //--------------------------------------
-    if(player.x < 0 + 60)
+
+    //Enemy Follow ----------------------
+    if(player.hitTestObject(enemy))
     {
-	    player.x = 60;
+        var dx = player1.x - follower.x;
+	    var dy = player1.y - follower.y;
+	    var dist = Math.sqrt(dx * dx + dy * dy)/*Math.sqrt(dx * dx + dy * dy)*/;
+	    var radians = Math.atan2(dy, dx);
+	
+	    follower.vx = Math.cos(radians)*follower.force;
+	    follower.vy = Math.sin(radians)*follower.force;
+	    follower.x += follower.vx * 2;
+	    follower.y += follower.vy * 2;
     }
-    if(player.y < 0 + 60)
-    {
-        player.y = 60;
-    }
-    if(player.x + 60 > canvas.width)
-    {
-	    player.x = canvas.width - 60;
-    }
-    if(player.y + 60 > canvas.height)
-    {
-        player.y = canvas.height - 60;
-    }
-    //----------------------------------->>>
+    
     //Starvation/Hungertimer ---------------
     hTimer --;
     if(hTimer == 0){
         hTimer = 3000/30;
         hunger -= 10;
         hBar.width -= 20;
-        console.log('count down');
+        console.log(hBar.width);
     }
-    
+
     if(hunger < 0)hunger = 0;
     if(hBar.width < 0)hBar.width = 0;
 
     //food collision -----------------------
     if(player1.hitTestObject(food)){
-
         hBar.width += 20;
         hunger += 10;
         food.x += 100;
-        food1.x += 100;
 
         if(hunger > 100)hunger = 100;
         if(hBar.width > 200)hBar.width = 200;
-        console.log('YUM YUM')
-        
+        console.log('YUM YUM')  
     }
     //--------------------------------------
     //Loops food back to Screen center ->>>>
     if(food.x < 0){
         food.x = canvas.width/2 + 15;
         food.y = canvas.height/2;
-        food1.x = food.x - 8;
-        food1.y = food.y - 10;
     }
     if(food.x > canvas.width){
         food.x = 15;
         food.y = canvas.height/2;
-        food1.x = food.x - 8;
-        food1.y = food.y - 10;
     }
     //Draw here ------------------------>>>>
-    barBack.drawRect();
+    follower.drawCircle();
     player1.drawRect();
-    player.drawRect();
+    enemy.drawRect();
+    barBack.drawRect();
+    //---------------
     hBar.drawRect();
     food.drawCircle();
-    food1.drawCircle();
 
     //drawing of the starvation death screen here...
     if(hBar.width <= 0)
