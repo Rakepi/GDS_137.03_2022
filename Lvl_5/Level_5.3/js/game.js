@@ -75,26 +75,26 @@ function animate()
 	//The for loop should use the particles.length for its limit
 	for(i = 0; i < particals.length; i++)
 	{	
-		if(particals[i].y > canvas.height - particals[i].height/2)
+		/*if(particals[i].y + particals[i].height/2 > canvas.height)
 		{
-			particals[i].vy += -vy;
+			particals[i].vy = -vy;
 		}
 		if(particals[i].y < 0 + particals[i].height/2)
 		{
-			particals[i].vy += -vy;
+			particals[i].vy = -vy;
 		}
 		if(particals[i].x > canvas.width - particals[i].width/2)
 		{
-			particals[i].vx += -vx;
+			particals[i].vx = -vx;
 
 		}
 		if(particals[i].x < 0 + particals[i].width/2 )
 		{
-			particals[i].vx += -vx;
+			particals[i].vx = -vx;
 				
-		}
+		}*/
 		particals[i].drawRect();
-		particals[i].move();
+		//particals[i].move();
 	}
 	
 	
