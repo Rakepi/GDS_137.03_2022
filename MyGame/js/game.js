@@ -117,7 +117,7 @@ function animate(){
     {
         var dx = player1.x - follower.x;
 	    var dy = player1.y - follower.y;
-	    var dist = Math.sqrt(dx * dx + dy * dy)/*Math.sqrt(dx * dx + dy * dy)*/;
+	    var dist = 300/*Math.sqrt(dx * dx + dy * dy)*/;
 	    var radians = Math.atan2(dy, dx);
 	
 	    follower.vx = Math.cos(radians)*follower.force;
