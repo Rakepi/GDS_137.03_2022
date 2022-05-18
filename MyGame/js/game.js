@@ -152,7 +152,7 @@ function animate(){
         food.x += 100;
 
         if(hunger > 100)hunger = 100;
-        if(hBar.width > 200)hBar.width = 200;
+        if(hBar.width > 400)hBar.width = 400;
         console.log('YUM YUM')  
     }
     //--------------------------------------
