@@ -16,19 +16,19 @@ context = canvas.getContext("2d");
 
 //Hunger bar --------------------------
 hBar = new GameObject();
-hBar.x = 120;
+hBar.x = 230;
 hBar.y = 30;
 hBar.height = 20;
-hBar.width = 200;
+hBar.width = 400;
 hBar.color = "Red";
 // ------------------------------------
 barBack = new GameObject();
 barBack.x = hBar.x;
 barBack.y = hBar.y;
 barBack.height = 30;
-barBack.width = 220;
+barBack.width = 420;
 barBack.color = "black";
-//Player 1 ----------------------------
+//Player 1 ------------- Playable Character....
 player1 = new GameObject();
 player1.x = 150;
 player1.y = canvas.height/2;
@@ -37,7 +37,7 @@ player1.width = 100;
 player1.color = "Purple";
 player1.vx = 0;
 player1.vy = 0;
-//--------------------------
+//---------------------- Enemy follow distance
 player = new GameObject();
 player.x = player1.x;
 player.y = player1.y;
@@ -51,7 +51,7 @@ food.y = canvas.height/2;
 food.height = 30;
 food.width = 30;
 food.color = "coral";
-// Death Screen ------------------------
+// Death Screen ------------- Game state end 
 death = new GameObject();
 death.x = canvas.width/2;
 death.y = canvas.height/2;
@@ -68,8 +68,9 @@ enemy.color = "red";
 follower = enemy;
 
 //--------------------------------------
+ timer = setInterval(animate, interval);
 
-    timer = setInterval(animate, interval);
+
 //MAIN function ------------------------
 function animate(){
     //clear canvas here
@@ -124,12 +125,19 @@ function animate(){
 	    follower.x += follower.vx * 2;
 	    follower.y += follower.vy * 2;
     }
-    
+    //Enemies make hunger stronger when they attack you cause u to starve faster...
+    if(player1.hitTestObject(enemy) && hTimer == 3000/30)
+    {
+        //hTimer --; works with and without this... but keep it incase needed later.
+        hunger -= 5;
+        hBar.width -= 20;
+        console.log("Pow bang wapow")
+    } 
     //Starvation/Hungertimer ---------------
     hTimer --;
     if(hTimer == 0){
         hTimer = 3000/30;
-        hunger -= 10;
+        hunger -= 5;
         hBar.width -= 20;
         console.log(hBar.width);
     }
